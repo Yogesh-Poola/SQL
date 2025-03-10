@@ -9,3 +9,4 @@ select sl.time_id,sl.time_id+7 from sh.sales sl;
 select sysdate,sysdate+INTERVAL '2' Hour from dual;
 select sysdate,sysdate+INTERVAL '2' Minute from dual;
 select sysdate,sysdate+INTERVAL '2' Second from dual;
+select sysdate,sysdate+INTERVAL '2' Year from dual;
