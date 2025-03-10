@@ -1,0 +1,11 @@
+select * from sh.SALES;
+select sysdate from dual;
+select systimestamp from dual;
+select dbtimezone from dual;
+select sessiontimezone from dual;
+select sysdate+interval '7' Day from dual;
+select sysdate+INTERVAL '-17' Day from dual;
+select sl.time_id,sl.time_id+7 from sh.sales sl;
+select sysdate,sysdate+INTERVAL '2' Hour from dual;
+select sysdate,sysdate+INTERVAL '2' Minute from dual;
+select sysdate,sysdate+INTERVAL '2' Second from dual;
