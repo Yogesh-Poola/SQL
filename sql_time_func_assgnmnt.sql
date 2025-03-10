@@ -10,3 +10,6 @@ select sysdate,sysdate+INTERVAL '2' Hour from dual;
 select sysdate,sysdate+INTERVAL '2' Minute from dual;
 select sysdate,sysdate+INTERVAL '2' Second from dual;
 select sysdate,sysdate+INTERVAL '2' Year from dual;
+select systimestamp,systimestamp+INTERVAL '2' Month from dual;
+select systimestamp,systimestamp+INTERVAL '2' Day +INTERVAL '4' Hour from dual;
+select distinct EXTRACT(YEAR FROM TIME_ID) AS YEAR,EXTRACT(MONTH FROM TIME_ID) AS MONTH,EXTRACT(DAY FROM TIME_ID) AS DAY from sh.SALES;
