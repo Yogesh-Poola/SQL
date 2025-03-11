@@ -58,9 +58,10 @@ select EXTRACT(YEAR from sl.TIME_ID) from sh.sales sl;
 --Extract the month from the sales date column.
 select EXTRACT(MONTH from sl.TIME_ID) from sh.sales sl;
 --Find the total sales for each month.
-select EXTRACT(MONTH from sl.TIME_ID) AS MONTHCOL,count(*) from sh.SALES sl group by MONTHCOL;
+select EXTRACT(MONTH from sl.TIME_ID) AS MONTHCOL,sum(sl.AMOUNT_SOLD) from sh.SALES sl group by MONTHCOL;
 --Retrieve sales records for transactions that occurred on weekends.
 with cte2 as (select sl.*,to_char(sl.TIME_ID,'DY') AS DAYOFWEEK from sh.sales sl) select *from cte2 where DAYOFWEEK IN ('SAT','SUN');
+select * from sh.sales where to_char(TIME_ID,'DY') IN ('SAT','SUN');
 --Find the first and last recorded sales transaction dates.
 select min(sl.TIME_ID) AS OLDESTRNXDATE,max(sl.TIME_ID) AS LATESTRNXDATE from sh.sales sl;
 --Retrieve sales transactions that happened on a specific date ('2024-03-01').
@@ -68,4 +69,6 @@ with cte3 as (select sl.*,to_char(sl.TIME_ID,'YYYY-MM-DD') AS NEWDATE from sh.SA
 --Count the number of sales transactions that happened in the last 7 days.
 select count(*) from sh.sales sl where sl.TIME_ID>=sysdate+INTERVAL '-7' DAY;
 --Retrieve sales that occurred during a specific time range (09:00 AM - 12:00 PM).
---select to_char(sl.TIME_ID,'HH24:MM:SS'),sl.* from sh.SALES sl where to_char(sl.TIME_ID,'HH24:MM:SS') = '12:00:00';
+with cte4 AS (select TO_NUMBER(to_char(sl.TIME_ID,'HH24')) AS HOURCONVERTED,sl.* from sh.SALES sl) select * from cte4 where HOURCONVERTED BETWEEN 9 AND 12;
+--Get the difference in days between the first and the last transaction in the table.
+select ABS(min(sl.TIME_ID)-max(sl.TIME_ID)) AS SaleDays from sh.sales sl;
