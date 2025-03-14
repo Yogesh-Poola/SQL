@@ -81,3 +81,6 @@ group by loc.CITY;
 select emp.DEPARTMENT_ID,count(*) from hr.employees emp WHERE emp.COMMISSION_PCT IS NOT NULL group by emp.DEPARTMENT_ID ;
 
 -- 20. Find the sum of salaries for employees who have a commission, grouped by department
+select emp.DEPARTMENT_ID,sum(emp.SALARY) from hr.employees emp WHERE emp.COMMISSION_PCT IS NOT NULL group by emp.DEPARTMENT_ID ;
+
+-- # Oracle SQL Aggregation Questions for Sales History Table
