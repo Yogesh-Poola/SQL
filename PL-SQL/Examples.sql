@@ -45,27 +45,52 @@ END;
 --------------------------------------------------
 -- 5. Using COUNT() with SELECT INTO
 --------------------------------------------------
-
+DECLARE
+    num_of_rows NUMBER;
+BEGIN
+    select count(*) into num_of_rows from hr.EMPLOYEES;
+    DBMS_OUTPUT.PUT_LINE('Total No.of Rows is '||num_of_rows);
+END;
 
 --------------------------------------------------
 -- 6. Fetching MAX Salary
 --------------------------------------------------
-
+DECLARE
+    max_salary NUMBER;
+BEGIN
+    select MAX(salary) into max_salary from hr.EMPLOYEES;
+    DBMS_OUTPUT.PUT_LINE('Maximum Salary is '||max_salary);
+END;
 
 --------------------------------------------------
 -- 7. Fetching MIN Salary
 --------------------------------------------------
-
+DECLARE
+    min_salary NUMBER;
+BEGIN
+    select MIN(salary) into min_salary from hr.EMPLOYEES;
+    DBMS_OUTPUT.PUT_LINE('Minimum Salary is '||min_salary);
+END;
 
 --------------------------------------------------
 -- 8. Fetching AVG Salary
 --------------------------------------------------
-
+DECLARE
+    avg_salary NUMBER;
+BEGIN
+    select AVG(salary) into avg_salary from hr.EMPLOYEES;
+    DBMS_OUTPUT.PUT_LINE('Average Salary is '||avg_salary);
+END;
 
 --------------------------------------------------
--- 9. Fetching Employee Name Using Subquery
+-- 9. Fetching First Employee Name Using Subquery
 --------------------------------------------------
-
+DECLARE
+ first_emp VARCHAR2(100);
+BEGIN
+    select first_name into first_emp from hr.EMPLOYEES where EMPLOYEE_ID = (select MIN(EMPLOYEE_ID) from hr.EMPLOYEES);
+    DBMS_OUTPUT.PUT_LINE('First Employee Name is '||first_emp);
+END;
 
 --------------------------------------------------
 -- 10. Fetching Data Using EXISTS
